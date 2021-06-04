@@ -29,7 +29,13 @@ namespace DinnerParty
 
             foreach (Guest guest in Guests)
             {
+                // TAking the Source list and creating new elements 
+                // Because we want to distribute the guest by occupation we select the parameter Occupation
+                //  
                 List<string> TableOccupation = Table1.Select(g => g.Occupation).ToList();
+                // We need to look at the guest and their key/value of occupation
+                // Look at the occupatiosn and see if the match
+                // Then add them to separate tables 
                 if (TableOccupation.Contains(guest.Occupation))
                 {
                     Table2.Add(guest);
@@ -40,18 +46,25 @@ namespace DinnerParty
                 }
             }
 
+            // This is how it will appear in the terminal. 
+            // Take the new IEnumrated list we created above with .Select() method 
+            // Console them stating the name, occupation, and a little about them 
+            // These are called from the list above and the guest public class
             Console.WriteLine("Table One");
             Console.WriteLine("--------------------------------------------");
             foreach (Guest guest in Table1)
             {
-                Console.WriteLine($"{guest.Name} {guest.Occupation} {guest.Bio}");
+                Console.WriteLine($"{guest.Name}: {guest.Occupation}; {guest.Bio}");
             }
             
+            // Adding whitespace so they will be more sperated in terminal
+            Console.WriteLine();
+
             Console.WriteLine("Table Two");
             Console.WriteLine("--------------------------------------------");
             foreach (Guest guest in Table2)
             {
-                Console.WriteLine($"{guest.Name} {guest.Occupation} {guest.Bio}");
+                Console.WriteLine($"{guest.Name}: {guest.Occupation}; {guest.Bio}");
             }
         }
     }
